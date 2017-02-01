@@ -25,22 +25,23 @@
     self = [super initWithFrame:frame];
     if (self) {
         
-        self.titleBackground                    = [UIView new];
-        self.titleBackground.layer.cornerRadius = nearbyintf(15.0);
-        [self addSubview:self.titleBackground];
+//        self.titleBackground                    = [UIView new];
+//        self.titleBackground.layer.cornerRadius = nearbyintf(15.0);
+//        [self addSubview:self.titleBackground];
         
         self.backgroundColor        = [UIColor clearColor];
-        self.title                  = [UILabel new];
-        self.title.backgroundColor  = [UIColor clearColor];
-        [self addSubview:self.title];
-        
-        [self.titleBackground makeConstraints:^(MASConstraintMaker *make) {
-            make.edges.equalTo(self.title).with.insets(UIEdgeInsetsMake(-6.0, -12.0, -4.0, -12.0));
-        }];
-        
-        [self.title makeConstraints:^(MASConstraintMaker *make) {
-            make.center.equalTo(self);
-        }];
+//        self.title                  = [UILabel new];
+//        self.title.backgroundColor  = [UIColor clearColor];
+//        [self addSubview:self.title];
+//                
+//        [self.titleBackground mas_makeConstraints:^(MASConstraintMaker *make) {
+//            make.edges.equalTo(self.title).with.insets(UIEdgeInsetsMake(-6.0, -12.0, -4.0, -12.0));
+//        }];
+//        
+//        [self.title mas_makeConstraints:^(MASConstraintMaker *make) {
+//            make.center.equalTo(self);
+//            make.centerX.equalTo(self).with.offset(-28);
+//        }];
     }
     return self;
 }
@@ -53,7 +54,7 @@
     if (!dateFormatter) {
         dateFormatter = [NSDateFormatter new];
         //dateFormatter.dateFormat = ((UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad) ? @"EEE MMM d" : @"EEEE MMMM d, YYYY");
-        dateFormatter.dateFormat = ((UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad) ? @"EEE d" : @"EEE MMMM d, YYYY");
+        dateFormatter.dateFormat = ((UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad) ? @"EEE d" : @"eeee, d MMMM");
     }
     self.title.text = [dateFormatter stringFromDate:day];
     [self setNeedsLayout];
@@ -64,9 +65,9 @@
     _currentDay = currentDay;
     
     if (currentDay) {
-        self.title.textColor                    = [UIColor whiteColor];
-        self.title.font                         = [UIFont boldSystemFontOfSize:16.0];
-        self.titleBackground.backgroundColor    = [UIColor colorWithHexString:@"fd3935"];
+        self.title.textColor                    = [UIColor blackColor];
+        self.title.font                         = [UIFont systemFontOfSize:16.0];
+        self.titleBackground.backgroundColor    = [UIColor clearColor];
     } else {
         self.title.font                         = [UIFont systemFontOfSize:16.0];
         self.title.textColor                    = [UIColor blackColor];

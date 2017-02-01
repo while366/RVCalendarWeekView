@@ -43,21 +43,27 @@
 #pragma mark - Gesture recognizer delegate
 //=========================================================
 - (BOOL)gestureRecognizerShouldBegin:(UIGestureRecognizer *)gestureRecognizer{
+    
     MSEventCell* eventCell = (MSEventCell*)gestureRecognizer.view;
+    NSLog(@"Star drag: %@",eventCell.event.title);
     return [self.dragDelegate weekView:self.weekView canStartMovingEvent:eventCell.event];
 }
 
 //=========================================================
 #pragma mark - Drag & Drop
 //=========================================================
+    
+    MSEventCell* eventCell1;
 -(void)onEventCellLongPress:(UILongPressGestureRecognizer*)gestureRecognizer{
-    MSEventCell* eventCell = (MSEventCell*)gestureRecognizer.view;
     
     if (gestureRecognizer.state == UIGestureRecognizerStateBegan) {
-        NSLog(@"Star drag: %@",eventCell.event.title);
+        
+        eventCell1 = (MSEventCell*)gestureRecognizer.view;
+        NSLog(@"Star drag: %@",eventCell1.event.title);
         CGPoint touchOffsetInCell = [gestureRecognizer locationInView:gestureRecognizer.view];
-        mDragableEvent = [MSDragableEvent makeWithEventCell:eventCell andOffset:self.weekView.collectionView.contentOffset touchOffset:touchOffsetInCell];
+        mDragableEvent = [MSDragableEvent makeWithEventCell:eventCell1 andOffset:self.weekView.collectionView.contentOffset touchOffset:touchOffsetInCell];
         [self.baseWeekView addSubview:mDragableEvent];
+        
     }
     else if(gestureRecognizer.state == UIGestureRecognizerStateChanged){
         CGPoint cp = [gestureRecognizer locationInView:self.baseWeekView];
@@ -79,22 +85,23 @@
         
     }
     else if(gestureRecognizer.state == UIGestureRecognizerStateEnded){
-        //NSLog(@"Long press ended: %@",eventCell.akEvent.title);
-        [self onDragEnded:eventCell];
+        NSLog(@"Long press ended: %@",eventCell1.event.title);
+        [self onDragEnded:eventCell1];
     }
+    NSLog(@"fds: %@",mDragableEvent.event.title);
 }
 
 -(void)onDragEnded:(MSEventCell*)eventCell{
     
     NSDate* newStartDate = [self dateForDragable];
     
-    if([self canMoveToNewDate:eventCell.event newDate:newStartDate]){
-        int duration = eventCell.event.durationInSeconds;
-        eventCell.event.StartDate = newStartDate;
-        eventCell.event.EndDate = [eventCell.event.StartDate dateByAddingSeconds:duration];
+    if([self canMoveToNewDate:mDragableEvent.event newDate:newStartDate]){
+        int duration = mDragableEvent.event.durationInSeconds;
+        mDragableEvent.event.StartDate = newStartDate;
+        mDragableEvent.event.EndDate = [mDragableEvent.event.StartDate dateByAddingSeconds:duration];
         [self.baseWeekView forceReload:YES];
         if(self.dragDelegate){
-            [self.dragDelegate weekView:self.baseWeekView event:eventCell.event moved:newStartDate];
+            [self.dragDelegate weekView:self.baseWeekView event:mDragableEvent.event moved:newStartDate];
         }
     }
     

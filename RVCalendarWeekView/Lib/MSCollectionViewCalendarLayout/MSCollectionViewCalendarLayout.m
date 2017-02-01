@@ -1261,45 +1261,12 @@ NSUInteger const MSCollectionMinBackgroundZ = 0.0;
 
 - (NSInteger)earliestHour
 {
-    
-    if (self.show24Hours) return 0;
-    if (self.cachedEarliestHour != NSIntegerMax) {
-        return self.cachedEarliestHour;
-    }
-    NSInteger earliestHour = NSIntegerMax;
-    for (NSInteger section = 0; section < self.collectionView.numberOfSections; section++) {
-        CGFloat sectionEarliestHour = [self earliestHourForSection:section];
-        if ((sectionEarliestHour < earliestHour) && (sectionEarliestHour != NSDateComponentUndefined)) {
-            earliestHour = sectionEarliestHour;
-        }
-    }
-    if (earliestHour != NSIntegerMax) {
-        self.cachedEarliestHour = earliestHour;
-        return earliestHour;
-    } else {
-        return 0;
-    }
+    return 0;
 }
 
 - (NSInteger)latestHour
 {
-    if (self.show24Hours) return 24;
-    if (self.cachedLatestHour != NSIntegerMin) {
-        return self.cachedLatestHour;
-    }
-    NSInteger latestHour = NSIntegerMin;
-    for (NSInteger section = 0; section < self.collectionView.numberOfSections; section++) {
-        CGFloat sectionLatestHour = [self latestHourForSection:section];
-        if ((sectionLatestHour > latestHour) && (sectionLatestHour != NSDateComponentUndefined)) {
-            latestHour = sectionLatestHour;
-        }
-    }
-    if (latestHour != NSIntegerMin) {
-        self.cachedLatestHour = latestHour;
-        return latestHour;
-    } else {
-        return 0;
-    }
+    return 24;
 }
 
 - (NSInteger)earliestHourForSection:(NSInteger)section
