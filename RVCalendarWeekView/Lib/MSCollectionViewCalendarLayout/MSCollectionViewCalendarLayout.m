@@ -173,6 +173,25 @@ NSUInteger const MSCollectionMinBackgroundZ = 0.0;
     return self;
 }
 
+- (CGPoint)targetContentOffsetForProposedContentOffset:(CGPoint)proposedContentOffset withScrollingVelocity:(CGPoint)velocity
+{
+    if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad) {
+        return [super targetContentOffsetForProposedContentOffset:proposedContentOffset withScrollingVelocity:velocity];
+    }
+    CGPoint targetPoint = proposedContentOffset;
+    CGFloat distance = NSNotFound;
+    
+    for (NSInteger section = 0; section < self.collectionView.numberOfSections; section++) {
+        CGFloat calendarContentMinX = (self.timeRowHeaderWidth + self.contentMargin.left + self.sectionMargin.left);
+        CGFloat sectionMinX = (calendarContentMinX + (self.sectionWidth * section));
+        if (fabs(proposedContentOffset.x - sectionMinX) < distance) {
+            targetPoint = CGPointMake(sectionMinX, targetPoint.y);
+            distance = fabs(proposedContentOffset.x - sectionMinX);
+        }
+    }
+    return CGPointMake(targetPoint.x - self.timeRowHeaderWidth, proposedContentOffset.y);
+}
+
 #pragma mark - UICollectionViewLayout
 - (void)prepareForCollectionViewUpdates:(NSArray *)updateItems
 {
