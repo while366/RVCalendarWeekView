@@ -173,24 +173,50 @@ NSUInteger const MSCollectionMinBackgroundZ = 0.0;
     return self;
 }
 
+#pragma mark - Pagination
+- (CGFloat)pageWidth {
+    return self.sectionWidth;
+}
+
 - (CGPoint)targetContentOffsetForProposedContentOffset:(CGPoint)proposedContentOffset withScrollingVelocity:(CGPoint)velocity
 {
-    if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad) {
-        return [super targetContentOffsetForProposedContentOffset:proposedContentOffset withScrollingVelocity:velocity];
-    }
-    CGPoint targetPoint = proposedContentOffset;
-    CGFloat distance = NSNotFound;
+    CGFloat rawPageValue = self.collectionView.contentOffset.x / self.pageWidth;
+    CGFloat currentPage = (velocity.x > 0.0) ? floor(rawPageValue) : ceil(rawPageValue);
+    CGFloat nextPage = (velocity.x > 0.0) ? ceil(rawPageValue) : floor(rawPageValue);
     
-    for (NSInteger section = 0; section < self.collectionView.numberOfSections; section++) {
-        CGFloat calendarContentMinX = (self.timeRowHeaderWidth + self.contentMargin.left + self.sectionMargin.left);
-        CGFloat sectionMinX = (calendarContentMinX + (self.sectionWidth * section));
-        if (fabs(proposedContentOffset.x - sectionMinX) < distance) {
-            targetPoint = CGPointMake(sectionMinX, targetPoint.y);
-            distance = fabs(proposedContentOffset.x - sectionMinX);
-        }
+    BOOL pannedLessThanAPage = fabs(1 + currentPage - rawPageValue) > 0.5;
+    BOOL flicked = fabs(velocity.x) > [self flickVelocity];
+    if (pannedLessThanAPage && flicked) {
+        proposedContentOffset.x = nextPage * self.pageWidth;
+    } else {
+        proposedContentOffset.x = round(rawPageValue) * self.pageWidth;
     }
-    return CGPointMake(targetPoint.x - self.timeRowHeaderWidth, proposedContentOffset.y);
+    
+    return proposedContentOffset;
 }
+
+- (CGFloat)flickVelocity {
+    return 0.3;
+}
+
+//- (CGPoint)targetContentOffsetForProposedContentOffset:(CGPoint)proposedContentOffset withScrollingVelocity:(CGPoint)velocity
+//{
+//    if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad) {
+//        return [super targetContentOffsetForProposedContentOffset:proposedContentOffset withScrollingVelocity:velocity];
+//    }
+//    CGPoint targetPoint = proposedContentOffset;
+//    CGFloat distance = NSNotFound;
+//
+//    for (NSInteger section = 0; section < self.collectionView.numberOfSections; section++) {
+//        CGFloat calendarContentMinX = (self.timeRowHeaderWidth + self.contentMargin.left + self.sectionMargin.left);
+//        CGFloat sectionMinX = (calendarContentMinX + (self.sectionWidth * section));
+//        if (fabs(proposedContentOffset.x - sectionMinX) < distance) {
+//            targetPoint = CGPointMake(sectionMinX, targetPoint.y);
+//            distance = fabs(proposedContentOffset.x - sectionMinX);
+//        }
+//    }
+//    return CGPointMake(targetPoint.x - self.timeRowHeaderWidth, proposedContentOffset.y);
+//}
 
 #pragma mark - UICollectionViewLayout
 - (void)prepareForCollectionViewUpdates:(NSArray *)updateItems
