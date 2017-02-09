@@ -127,6 +127,17 @@
     });
 }
 
+-(void)reloadWhenSwipe:(BOOL)isForward{
+    dispatch_async(dispatch_get_main_queue(), ^{
+        [self groupEventsBySectionWhenSwipe:isForward];
+        [self.weekFlowLayout invalidateLayoutCache];
+        [self.collectionView reloadData];
+        if (!isForward) {
+            self.collectionView.contentOffset = CGPointMake((self.collectionView.frame.size.width * 4) + (50 * 5), self.collectionView.frame.origin.y);
+        }
+    });
+}
+
 - (CGFloat)layoutSectionWidth{
     return (self.frame.size.width - 50) / self.daysToShowOnScreen;
 }
@@ -161,15 +172,42 @@
 
 /**
  * Note that in the standard calendar, each section is a day"
- */
+*/
+
+-(void)groupEventsBySectionWhenSwipe:(BOOL)isForward {
+//    _eventsBySection = [mEvents groupBy:@"StartDate.toDeviceTimezoneDateString"].mutableCopy;
+    NSDate* date = [NSDate alloc];
+    if (isForward) {
+        date = [[self.firstDay addDays:self.daysToShow] addDays:5];
+    } else {
+        date = [self.firstDay addDays: -5];
+    }
+    if(self.daysToShow == 1 && _eventsBySection.count == 1){
+        date = [NSDate parse:_eventsBySection.allKeys.firstObject];
+    }
+    for(int i = 0; i< self.daysToShow; i++){
+        if(![_eventsBySection.allKeys containsObject:date.toDeviceTimezoneDateString]){
+            [_eventsBySection setObject:@[] forKey:date.toDeviceTimezoneDateString];
+        }
+        date = [date addDay];
+    }
+}
+
 -(void)groupEventsBySection{
     
     //TODO : Improve this to make it faster
     _eventsBySection = [mEvents groupBy:@"StartDate.toDeviceTimezoneDateString"].mutableCopy;
-    
-    
+    NSIndexPath * indexPath = self.collectionView.visibleCells.firstObject;
+    NSDate* date = [NSDate alloc];
+    if (indexPath.section > 3) {
+        date = [[NSDate parse:NSDate.today.toDateTimeString timezone:@"device"] addDays:5]; //If it crashes here, comment the previous line and uncomment this one
+
+    } else {
+        date = [NSDate parse:NSDate.today.toDateTimeString timezone:@"device"];
+//        date = [self.firstDay addDays:-5]; //If it crashes here, comment the previous line and uncomment this one
+
+    }
     //NSDate* date = [NSDate today:@"device"];                                      //Why does it crash on some configurations?
-    NSDate* date = [NSDate parse:NSDate.today.toDateTimeString timezone:@"device"];  //If it crashes here, comment the previous line and uncomment this one
     if(self.daysToShow == 1 && _eventsBySection.count == 1){
         date = [NSDate parse:_eventsBySection.allKeys.firstObject];
     }
@@ -187,7 +225,6 @@
 - (NSInteger)numberOfSectionsInCollectionView:(UICollectionView *)collectionView
 {   
     return _eventsBySection.count;
-
 }
 
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section

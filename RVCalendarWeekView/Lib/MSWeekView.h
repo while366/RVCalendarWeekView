@@ -70,6 +70,7 @@
  * Call this function to reload (when
  */
 -(void)forceReload:(BOOL)reloadEvents;
+-(void)reloadWhenSwipe:(BOOL)isForward;
 
 -(void)addEvent   :(MSEvent*)event;
 -(void)addEvents  :(NSArray*)events;
