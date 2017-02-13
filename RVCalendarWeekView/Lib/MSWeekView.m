@@ -198,15 +198,7 @@
     //TODO : Improve this to make it faster
     _eventsBySection = [mEvents groupBy:@"StartDate.toDeviceTimezoneDateString"].mutableCopy;
     NSIndexPath * indexPath = self.collectionView.visibleCells.firstObject;
-    NSDate* date = [NSDate alloc];
-    if (indexPath.section > 3) {
-        date = [[NSDate parse:NSDate.today.toDateTimeString timezone:@"device"] addDays:5]; //If it crashes here, comment the previous line and uncomment this one
-
-    } else {
-        date = [NSDate parse:NSDate.today.toDateTimeString timezone:@"device"];
-//        date = [self.firstDay addDays:-5]; //If it crashes here, comment the previous line and uncomment this one
-
-    }
+    NSDate* date = [NSDate parse:NSDate.today.toDateTimeString timezone:@"device"];
     //NSDate* date = [NSDate today:@"device"];                                      //Why does it crash on some configurations?
     if(self.daysToShow == 1 && _eventsBySection.count == 1){
         date = [NSDate parse:_eventsBySection.allKeys.firstObject];
