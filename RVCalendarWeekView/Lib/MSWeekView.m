@@ -205,6 +205,7 @@
     }
     for(int i = 0; i< self.daysToShow; i++){
         if(![_eventsBySection.allKeys containsObject:date.toDeviceTimezoneDateString]){
+            if date.toDeviceTimezoneDateString == nil { return }
             [_eventsBySection setObject:@[] forKey:date.toDeviceTimezoneDateString];
         }
         date = [date addDay];
