@@ -58,7 +58,7 @@
 
 - (void)updateTime
 {
-    self.time.text = [NSDate.now format:@"h:mm aa" timezone:@"device"];
+    self.time.text = [NSDate.now format:@"H:mm" timezone:@"device"];
     [self.time sizeToFit];
 }
 
