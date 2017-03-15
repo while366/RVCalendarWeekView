@@ -65,6 +65,7 @@ typedef NS_ENUM(NSUInteger, MSHourGridDivision) {
 @interface MSCollectionViewCalendarLayout : UICollectionViewLayout
 
 @property (nonatomic, weak) id <MSCollectionViewDelegateCalendarLayout> delegate;
+@property (nonatomic, weak) id <MSWeekViewLayoutDelegate> layoutDelegate;
 
 @property (nonatomic) BOOL show24Hours;
 @property (nonatomic) CGFloat sectionWidth;
@@ -82,7 +83,7 @@ typedef NS_ENUM(NSUInteger, MSHourGridDivision) {
 @property (nonatomic) MSSectionLayoutType sectionLayoutType;
 @property (nonatomic) MSHeaderLayoutType headerLayoutType;
 @property (nonatomic) BOOL displayHeaderBackgroundAtOrigin;
-@property (nonatomic, weak) id <MSWeekViewLayoutDelegate> layoutDelegate;
+
 
 - (NSInteger)earliestHour;
 - (NSInteger)latestHour;
