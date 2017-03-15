@@ -27,7 +27,6 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "MSWeekViewLayoutDelegate.h"
 
 extern NSString * const MSCollectionElementKindTimeRowHeader;
 extern NSString * const MSCollectionElementKindDayColumnHeader;
