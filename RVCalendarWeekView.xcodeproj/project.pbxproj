@@ -448,6 +448,7 @@
 				TargetAttributes = {
 					76276EB11D6B81D4002C1D39 = {
 						CreatedOnToolsVersion = 7.3.1;
+						DevelopmentTeam = 7QB22V646H;
 					};
 					76276ECA1D6B81D4002C1D39 = {
 						CreatedOnToolsVersion = 7.3.1;
@@ -709,6 +710,7 @@
 			baseConfigurationReference = 55A9198AF6C016D51B48E4CB /* Pods-RVCalendarWeekView.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				DEVELOPMENT_TEAM = 7QB22V646H;
 				INFOPLIST_FILE = RVCalendarWeekView/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = works.revo.RVCalendarWeekView;
@@ -721,6 +723,7 @@
 			baseConfigurationReference = 016043077DD4C904B6A3A6BE /* Pods-RVCalendarWeekView.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				DEVELOPMENT_TEAM = 7QB22V646H;
 				INFOPLIST_FILE = RVCalendarWeekView/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = works.revo.RVCalendarWeekView;

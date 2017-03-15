@@ -31,6 +31,7 @@
 #import "NSDate+Easy.h"
 #import "MSHourPerdiod.h"
 
+
 NSString * const MSCollectionElementKindTimeRowHeader               = @"MSCollectionElementKindTimeRow";
 NSString * const MSCollectionElementKindDayColumnHeader             = @"MSCollectionElementKindDayHeader";
 NSString * const MSCollectionElementKindTimeRowHeaderBackground     = @"MSCollectionElementKindTimeRowHeaderBackground";
@@ -336,6 +337,13 @@ NSUInteger const MSCollectionMinBackgroundZ = 0.0;
     // The current time is within the day
     NSDateComponents *currentTimeDateComponents = [self currentTimeDateComponents];
     BOOL currentTimeIndicatorVisible = ((currentTimeDateComponents.hour >= earliestHour) && (currentTimeDateComponents.hour < latestHour));
+    NSDateComponents *selectDayComponent = [NSCalendar.currentCalendar components:(NSCalendarUnitDay | NSCalendarUnitHour | NSCalendarUnitMinute | NSCalendarUnitWeekday) fromDate:[_layoutDelegate getSelectDate]];
+    if (selectDayComponent.day == currentTimeDateComponents.day && selectDayComponent.month == currentTimeDateComponents.month && selectDayComponent.year == currentTimeDateComponents.year) {
+        currentTimeIndicatorVisible = true;
+    } else {
+        currentTimeIndicatorVisible = false;
+    }
+    
     currentTimeIndicatorAttributes.hidden = !currentTimeIndicatorVisible;
     currentTimeHorizontalGridlineAttributes.hidden = !currentTimeIndicatorVisible;
     

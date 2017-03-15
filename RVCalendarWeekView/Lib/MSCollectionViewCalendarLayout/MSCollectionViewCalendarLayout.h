@@ -27,6 +27,7 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "MSWeekViewLayoutDelegate.h"
 
 extern NSString * const MSCollectionElementKindTimeRowHeader;
 extern NSString * const MSCollectionElementKindDayColumnHeader;
@@ -60,6 +61,7 @@ typedef NS_ENUM(NSUInteger, MSHourGridDivision) {
 
 @class MSCollectionViewCalendarLayout;
 @protocol MSCollectionViewDelegateCalendarLayout;
+@protocol MSWeekViewLayoutDelegate;
 
 @interface MSCollectionViewCalendarLayout : UICollectionViewLayout
 
@@ -81,7 +83,7 @@ typedef NS_ENUM(NSUInteger, MSHourGridDivision) {
 @property (nonatomic) MSSectionLayoutType sectionLayoutType;
 @property (nonatomic) MSHeaderLayoutType headerLayoutType;
 @property (nonatomic) BOOL displayHeaderBackgroundAtOrigin;
-
+@property (nonatomic, weak) id <MSWeekViewLayoutDelegate> layoutDelegate;
 
 - (NSInteger)earliestHour;
 - (NSInteger)latestHour;
@@ -95,6 +97,12 @@ typedef NS_ENUM(NSUInteger, MSHourGridDivision) {
 
 // Since a "reloadData" on the UICollectionView doesn't call "prepareForCollectionViewUpdates:", this method must be called first to flush the internal caches
 - (void)invalidateLayoutCache;
+
+@end
+
+@protocol MSWeekViewLayoutDelegate <NSObject>
+
+-(NSDate*)getSelectDate;
 
 @end
 
