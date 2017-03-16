@@ -231,7 +231,7 @@
     MSEventCell *cell  = [collectionView dequeueReusableCellWithReuseIdentifier:MSEventCellReuseIdentifier forIndexPath:indexPath];
     NSString* day      = [_eventsBySection.allKeys.sort objectAtIndex:indexPath.section];
     cell.event         = [_eventsBySection[day] objectAtIndex:indexPath.row];
-    
+    [self.delegate weekViewUpdate:cell];
     return cell;
 }
 
