@@ -307,7 +307,6 @@
 }
 
 - (void)scrollViewDidScroll:(UIScrollView *)scrollView{
-    [self.delegate weekViewDidScroll];
 }
 
 //================================================
