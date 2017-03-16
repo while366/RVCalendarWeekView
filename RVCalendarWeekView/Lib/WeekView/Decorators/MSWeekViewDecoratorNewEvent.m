@@ -36,7 +36,7 @@
         NSDate* date = [self dateForGesture:gestureRecognizer];
         
         if(self.createEventDelegate)
-            [self.createEventDelegate weekView:self.baseWeekView onTapAt:date];
+            [self.createEventDelegate weekView:self.baseWeekView onTapAt:date coord: [gestureRecognizer locationInView:self.baseWeekView]];
     }
 }
 

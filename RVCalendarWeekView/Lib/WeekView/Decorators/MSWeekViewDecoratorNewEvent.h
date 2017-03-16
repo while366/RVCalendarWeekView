@@ -11,7 +11,7 @@
 @protocol MSWeekViewNewEventDelegate <NSObject>
 @optional
 -(void)weekView:(MSWeekView*)weekView onLongPressAt:(NSDate*)date;
--(void)weekView:(MSWeekView*)weekView onTapAt:(NSDate*)date;
+-(void)weekView:(MSWeekView*)weekView onTapAt:(NSDate*)date coord:(CGPoint)point;
 @end
 
 @interface MSWeekViewDecoratorNewEvent : MSWeekViewDecorator
