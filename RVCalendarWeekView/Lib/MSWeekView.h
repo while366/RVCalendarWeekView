@@ -14,8 +14,8 @@
 
 @protocol MSWeekViewDelegate <NSObject>
 -(void)weekView:(id)sender eventSelected:(MSEventCell*)eventCell;
-
 @optional
+-(void)weekViewDidScroll;
 /**
  * Should Return an array of MSHourPerdiod ex:(00:00,10:00) 
  */
