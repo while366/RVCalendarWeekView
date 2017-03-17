@@ -267,7 +267,11 @@
     if (day == nil) {
         return [[NSDate alloc] init];
     }
-    return [NSDate parse:day timezone:@"device"];
+    NSDate* date = [NSDate parse:day timezone:@"device"];
+    if (date == nil) {
+        return [[NSDate alloc] init];
+    }
+    return date;
 }
 
 - (NSDate *)collectionView:(UICollectionView *)collectionView layout:(MSCollectionViewCalendarLayout *)collectionViewCalendarLayout startTimeForItemAtIndexPath:(NSIndexPath *)indexPath
