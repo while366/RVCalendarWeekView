@@ -300,8 +300,17 @@
 //================================================
 -(void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath{
     if(self.delegate){
-        MSEventCell* cell = (MSEventCell*)[collectionView cellForItemAtIndexPath:indexPath];
-        [self.delegate weekView:self eventSelected:cell];
+        MSEventCell* cell;// = (MSEventCell*)[collectionView cellForItemAtIndexPath:indexPath];
+        NSArray * arrayCells = [collectionView visibleCells];
+        for (int i = 0; i < [arrayCells count]; i ++) {
+            if (indexPath == [collectionView indexPathForCell: arrayCells[i]]) {
+                cell = arrayCells[i];
+                break;
+            }
+        }
+        if (cell != nil) {
+            [self.delegate weekView:self eventSelected:cell];
+        }
     }
 }
 
