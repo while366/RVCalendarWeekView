@@ -264,6 +264,9 @@
 - (NSDate *)collectionView:(UICollectionView *)collectionView layout:(MSCollectionViewCalendarLayout *)collectionViewCalendarLayout dayForSection:(NSInteger)section
 {
     NSString* day = [_eventsBySection.allKeys.sort objectAtIndex:section];
+    if (day == nil) {
+        return [[NSDate alloc] init];
+    }
     return [NSDate parse:day timezone:@"device"];
 }
 
