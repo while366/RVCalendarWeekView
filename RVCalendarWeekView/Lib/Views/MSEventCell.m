@@ -16,7 +16,6 @@
 
 @interface MSEventCell ()
 
-@property (nonatomic, strong) UIView *borderView;
 @property (nonatomic, strong) UIView *topBorderView;
 
 @end
