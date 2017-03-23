@@ -263,15 +263,19 @@
 //================================================
 - (NSDate *)collectionView:(UICollectionView *)collectionView layout:(MSCollectionViewCalendarLayout *)collectionViewCalendarLayout dayForSection:(NSInteger)section
 {
-    NSString* day = [_eventsBySection.allKeys.sort objectAtIndex:section];
-    if (day == nil) {
+    if ([_eventsBySection count] > section) {
+        NSString* day = [_eventsBySection.allKeys.sort objectAtIndex:section];
+        if (day == nil) {
+            return [[NSDate alloc] init];
+        }
+        NSDate* date = [NSDate parse:day timezone:@"device"];
+        if (date == nil) {
+            return [[NSDate alloc] init];
+        }
+        return date;
+    } else {
         return [[NSDate alloc] init];
     }
-    NSDate* date = [NSDate parse:day timezone:@"device"];
-    if (date == nil) {
-        return [[NSDate alloc] init];
-    }
-    return date;
 }
 
 - (NSDate *)collectionView:(UICollectionView *)collectionView layout:(MSCollectionViewCalendarLayout *)collectionViewCalendarLayout startTimeForItemAtIndexPath:(NSIndexPath *)indexPath
