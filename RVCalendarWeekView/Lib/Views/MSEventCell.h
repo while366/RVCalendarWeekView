@@ -8,13 +8,13 @@
 
 #import <UIKit/UIKit.h>
 #import "MSEvent.h"
-
+#import "CustomLabel.h"
 @class MSEvent;
 
 @interface MSEventCell : UICollectionViewCell
 
 @property (nonatomic, strong) MSEvent *event;
-@property (nonatomic, strong) UILabel *title;
+@property (nonatomic, strong) CustomLabel *title;
 @property (nonatomic, strong) UILabel *location;
 @property (nonatomic, strong) UIView *borderView;
 

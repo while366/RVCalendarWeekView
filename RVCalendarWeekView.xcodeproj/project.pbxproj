@@ -40,6 +40,7 @@
 		76FC4A061D78678C004CF995 /* MSWeekViewDecoratorNewEvent.m in Sources */ = {isa = PBXBuildFile; fileRef = 76FC4A051D78678C004CF995 /* MSWeekViewDecoratorNewEvent.m */; };
 		76FC4A091D786E7F004CF995 /* MSWeekViewDecoratorFactory.m in Sources */ = {isa = PBXBuildFile; fileRef = 76FC4A081D786E7F004CF995 /* MSWeekViewDecoratorFactory.m */; };
 		819ED74187A2A0C0B39AEB2B /* libPods-RVCalendarWeekView.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 1A43A252421A63E1655B8A38 /* libPods-RVCalendarWeekView.a */; };
+		B32638DE1E8CD82B00C9278B /* CustomLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = B32638DD1E8CD82B00C9278B /* CustomLabel.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -118,6 +119,8 @@
 		76FC4A051D78678C004CF995 /* MSWeekViewDecoratorNewEvent.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MSWeekViewDecoratorNewEvent.m; path = Lib/WeekView/Decorators/MSWeekViewDecoratorNewEvent.m; sourceTree = "<group>"; };
 		76FC4A071D786E7F004CF995 /* MSWeekViewDecoratorFactory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MSWeekViewDecoratorFactory.h; path = Lib/WeekView/Decorators/MSWeekViewDecoratorFactory.h; sourceTree = "<group>"; };
 		76FC4A081D786E7F004CF995 /* MSWeekViewDecoratorFactory.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MSWeekViewDecoratorFactory.m; path = Lib/WeekView/Decorators/MSWeekViewDecoratorFactory.m; sourceTree = "<group>"; };
+		B32638DC1E8CD82B00C9278B /* CustomLabel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CustomLabel.h; sourceTree = "<group>"; };
+		B32638DD1E8CD82B00C9278B /* CustomLabel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CustomLabel.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -271,6 +274,8 @@
 				7657ACE31DA7DF6C00C4FA68 /* Indicators */,
 				76276EEC1D6B826B002C1D39 /* MSEventCell.h */,
 				76276EED1D6B826B002C1D39 /* MSEventCell.m */,
+				B32638DC1E8CD82B00C9278B /* CustomLabel.h */,
+				B32638DD1E8CD82B00C9278B /* CustomLabel.m */,
 				763A80281D6C4488002E0CBF /* MSDragableEvent.h */,
 				763A80291D6C4488002E0CBF /* MSDragableEvent.m */,
 			);
@@ -558,6 +563,7 @@
 				76276F051D6B8759002C1D39 /* MSEvent.m in Sources */,
 				7630AD5A1DA3FA80006D8FDC /* MSHourPerdiod.m in Sources */,
 				76276EFB1D6B826B002C1D39 /* MSEventCell.m in Sources */,
+				B32638DE1E8CD82B00C9278B /* CustomLabel.m in Sources */,
 				76276EBD1D6B81D4002C1D39 /* ViewController.m in Sources */,
 				768458281D7847D80080A27A /* MSWeekViewDecoratorDragable.m in Sources */,
 				76276EFD1D6B826B002C1D39 /* MSTimeRowHeader.m in Sources */,
