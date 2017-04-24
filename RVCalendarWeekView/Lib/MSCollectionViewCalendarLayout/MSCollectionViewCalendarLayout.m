@@ -974,6 +974,7 @@ NSUInteger const MSCollectionMinBackgroundZ = 0.0;
     [self.cachedLatestHours                     removeAllObjects];
     
     // Invalidate cached item attributes
+    [self.currentTimeIndicatorAttributes        removeAllObjects];
     [self.itemAttributes                        removeAllObjects];
     [self.verticalGridlineAttributes            removeAllObjects];
     [self.horizontalGridlineAttributes          removeAllObjects];
