@@ -56,10 +56,11 @@
         [self.contentView addSubview: self.imageView];
         
         self.nameLabel = [UILabel new];
-        self.nameLabel.font = [UIFont systemFontOfSize: 7.0];
+        self.nameLabel.font = [UIFont systemFontOfSize: 10.0];
         self.nameLabel.textColor = [UIColor whiteColor];
         self.nameLabel.layer.cornerRadius = 12.5;
         self.nameLabel.layer.masksToBounds = true;
+        self.nameLabel.textAlignment = NSTextAlignmentCenter;
         [self.contentView addSubview:self.nameLabel];
         
         [self updateColors];
