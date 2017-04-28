@@ -16,6 +16,7 @@
 @property (nonatomic, strong) UILabel *title;
 @property (nonatomic, strong) UILabel *location;
 @property (nonatomic, strong) UIView *borderView;
+@property (nonatomic, strong) UIImageView *imageView;
 
 - (void)updateColors;
 

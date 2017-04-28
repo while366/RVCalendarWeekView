@@ -292,7 +292,7 @@
     return ev.EndDate;
 }
 
--(NSArray*)unavailableHoursPeriods:(UICollectionView *)collectionView layout:(MSCollectionViewCalendarLayout *)collectionViewLayout section:(int)section{
+-(NSArray*)unavailableHoursPeriods:(UICollectionView *)collectionView layout:(MSCollectionViewCalendarLayout *)collectionViewLayout section:(NSUInteger)section{
     if([self.delegate respondsToSelector:@selector(weekView:unavailableHoursPeriods:)]){
         NSDate* date = [self collectionView:collectionView layout:collectionViewLayout dayForSection:section];
         return [self.delegate weekView:self unavailableHoursPeriods:date];

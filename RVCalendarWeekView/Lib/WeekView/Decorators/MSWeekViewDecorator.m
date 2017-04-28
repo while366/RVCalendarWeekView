@@ -95,7 +95,7 @@
     return [_weekView collectionView:collectionView layout:collectionViewCalendarLayout endTimeForItemAtIndexPath:indexPath];
 }
 
--(NSArray*)unavailableHoursPeriods:(UICollectionView *)collectionView layout:(MSCollectionViewCalendarLayout *)collectionViewLayout section:(int)section{
+-(NSArray*)unavailableHoursPeriods:(UICollectionView *)collectionView layout:(MSCollectionViewCalendarLayout *)collectionViewLayout section:(NSUInteger)section{
     return [_weekView unavailableHoursPeriods:collectionView layout:collectionViewLayout section:section];
 }
 

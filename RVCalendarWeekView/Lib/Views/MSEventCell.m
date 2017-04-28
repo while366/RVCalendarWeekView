@@ -49,15 +49,14 @@
         self.title.backgroundColor = [UIColor clearColor];
         [self.contentView addSubview:self.title];
         
-        self.location = [UILabel new];
-        self.location.numberOfLines = 0;
-        self.location.backgroundColor = [UIColor clearColor];
-        [self.contentView addSubview:self.location];
+        self.imageView = [UIImageView new];
+        self.imageView.contentMode = UIViewContentModeScaleAspectFit;
+        self.imageView.layer.cornerRadius = 12.5;
+        [self.contentView addSubview: self.imageView];
         
         [self updateColors];
         
         CGFloat borderWidth = 2.0;
-        CGFloat contentMargin = 2.0;
         UIEdgeInsets contentPadding = UIEdgeInsetsMake(4.0, (borderWidth + 4.0), 1.0, 4.0);
         
         [self.borderView mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -78,14 +77,14 @@
         [self.title mas_makeConstraints:^(MASConstraintMaker *make) {
             make.top.equalTo(self.mas_top).offset(contentPadding.top);
             make.left.equalTo(self.mas_left).offset(contentPadding.left);
-            make.right.equalTo(self.mas_right).offset(-contentPadding.right);
+            make.right.equalTo(self.mas_right).offset(-contentPadding.right - 30);
         }];
         
-        [self.location mas_makeConstraints:^(MASConstraintMaker *make) {
-            make.top.equalTo(self.title.mas_bottom).offset(contentMargin);
-            make.left.equalTo(self.mas_left).offset(contentPadding.left);
+        [self.imageView mas_makeConstraints:^(MASConstraintMaker *make) {
+            make.height.equalTo(@(25));
+            make.width.equalTo(@(25));
             make.right.equalTo(self.mas_right).offset(-contentPadding.right);
-            make.bottom.lessThanOrEqualTo(self.mas_bottom).offset(-contentPadding.bottom);
+            make.top.equalTo(self.mas_top);
         }];
     }
     return self;
@@ -119,6 +118,7 @@
 {
     _event = event;
     self.title.attributedText    = [[NSAttributedString alloc] initWithString:_event.title attributes:[self titleAttributesHighlighted:self.selected]];
+    self.imageView.image = event.image;
 //    self.location.attributedText = [[NSAttributedString alloc] initWithString:_event.location attributes:[self subtitleAttributesHighlighted:self.selected]];
     [self updateColors];
 }
@@ -129,7 +129,6 @@
     self.contentView.backgroundColor = [self backgroundColorHighlighted:self.selected];
     self.borderView.backgroundColor  = [self borderColor];
     self.title.textColor             = [self textColorHighlighted:self.selected];
-    self.location.textColor          = [self textColorHighlighted:self.selected];
 }
 
 -(void)removeIndicators{

@@ -39,24 +39,24 @@
     
     
     //Create the events
-    MSEvent* event1 = [MSEvent make:NSDate.now
-                              title:@"Title"
-                           subtitle:@"Central perk"];
-    
-    MSEvent* event2 = [MSEvent make:[NSDate.now addMinutes:10]
-                           duration:60*3
-                              title:@"Title 2"
-                           subtitle:@"Central perk"];
-    
-    MSEvent* event3 = [MSEvent make:[NSDate.tomorrow addMinutes:10]
-                           duration:60*3
-                              title:@"Title 3"
-                           subtitle:@"Central perk"];
-    
-    MSEvent* event4 = [MSEvent make:[NSDate.nextWeek addHours:7]
-                           duration:60*3
-                              title:@"Title 4"
-                           subtitle:@"Central perk"];
+//    MSEvent* event1 = [MSEvent make:NSDate.now
+//                              title:@"Title"
+//                           subtitle:@"Central perk"];
+//    
+//    MSEvent* event2 = [MSEvent make:[NSDate.now addMinutes:10]
+//                           duration:60*3
+//                              title:@"Title 2"
+//                           subtitle:@"Central perk"];
+//    
+//    MSEvent* event3 = [MSEvent make:[NSDate.tomorrow addMinutes:10]
+//                           duration:60*3
+//                              title:@"Title 3"
+//                           subtitle:@"Central perk"];
+//    
+//    MSEvent* event4 = [MSEvent make:[NSDate.nextWeek addHours:7]
+//                           duration:60*3
+//                              title:@"Title 4"
+//                           subtitle:@"Central perk"];
     
     _weekView.delegate								= self;
     _weekView.weekFlowLayout.show24Hours			= YES;
@@ -70,7 +70,7 @@
     }
     _weekView.daysToShow                    = 30;
     _weekView.weekFlowLayout.hourHeight     = 50;
-    _weekView.events = @[event1,event2,event3,event4];
+//    _weekView.events = @[event1,event2,event3,event4];
 }
 
 //=========================================
@@ -131,8 +131,8 @@
 //=========================================
 -(void)weekView:(MSWeekView*)weekView onLongPressAt:(NSDate*)date{
     NSLog(@"Long pressed at: %@", date);
-    MSEvent *newEvent = [MSEvent make:date title:@"New Event" subtitle:@"Platinium stadium"];
-    [_weekView addEvent:newEvent];
+//    MSEvent *newEvent = [MSEvent make:date title:@"New Event" subtitle:@"Platinium stadium"];
+//    [_weekView addEvent:newEvent];
 }
 
 -(void)weekView:(MSWeekView*)weekView onTapAt:(NSDate*)date{
@@ -146,17 +146,17 @@
 -(BOOL)weekView:(MSWeekView*)weekView newDaysLoaded:(NSDate*)startDate to:(NSDate*)endDate{
     NSLog(@"New days loaded: %@ - %@", startDate, endDate);
     
-    MSEvent* newEvent = [MSEvent make:[startDate addHours:7]
-                           duration:60*3
-                              title:@"New event"
-                           subtitle:@"Batcave"];
-    
-    MSEvent* lastEvent = [MSEvent make:[endDate addHours:-7]
-                             duration:60*3
-                                title:@"Last event"
-                             subtitle:@"Fantastic tower"];
-    
-    [weekView addEvents:@[newEvent,lastEvent]];
+//    MSEvent* newEvent = [MSEvent make:[startDate addHours:7]
+//                           duration:60*3
+//                              title:@"New event"
+//                           subtitle:@"Batcave"];
+//    
+//    MSEvent* lastEvent = [MSEvent make:[endDate addHours:-7]
+//                             duration:60*3
+//                                title:@"Last event"
+//                             subtitle:@"Fantastic tower"];
+//    
+//    [weekView addEvents:@[newEvent,lastEvent]];
     return YES;
 }
 
