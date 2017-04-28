@@ -55,6 +55,13 @@
         self.imageView.layer.masksToBounds = true;
         [self.contentView addSubview: self.imageView];
         
+        self.nameLabel = [UILabel new];
+        self.nameLabel.font = [UIFont systemFontOfSize: 7.0];
+        self.nameLabel.textColor = [UIColor whiteColor];
+        self.nameLabel.layer.cornerRadius = 12.5;
+        self.nameLabel.layer.masksToBounds = true;
+        [self.contentView addSubview:self.nameLabel];
+        
         [self updateColors];
         
         CGFloat borderWidth = 2.0;
@@ -82,6 +89,13 @@
         }];
         
         [self.imageView mas_makeConstraints:^(MASConstraintMaker *make) {
+            make.height.equalTo(@(25));
+            make.width.equalTo(@(25));
+            make.right.equalTo(self.mas_right).offset(-contentPadding.right-5);
+            make.top.equalTo(self.mas_top).offset(contentPadding.top);
+        }];
+        
+        [self.nameLabel mas_makeConstraints:^(MASConstraintMaker *make) {
             make.height.equalTo(@(25));
             make.width.equalTo(@(25));
             make.right.equalTo(self.mas_right).offset(-contentPadding.right-5);
@@ -119,7 +133,14 @@
 {
     _event = event;
     self.title.attributedText    = [[NSAttributedString alloc] initWithString:_event.title attributes:[self titleAttributesHighlighted:self.selected]];
-    self.imageView.image = event.image;
+    if (event.image == nil) {
+        [self.imageView setHidden: true];
+        self.nameLabel.text = event.nameText;
+        self.nameLabel.backgroundColor = event.nameBackgroundColor;
+    } else {
+        self.imageView.image = event.image;
+        [self.nameLabel setHidden: true];
+    }
 //    self.location.attributedText = [[NSAttributedString alloc] initWithString:_event.location attributes:[self subtitleAttributesHighlighted:self.selected]];
     [self updateColors];
 }
