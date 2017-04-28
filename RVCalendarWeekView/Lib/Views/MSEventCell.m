@@ -133,13 +133,16 @@
 {
     _event = event;
     self.title.attributedText    = [[NSAttributedString alloc] initWithString:_event.title attributes:[self titleAttributesHighlighted:self.selected]];
+    self.nameLabel.textColor = [UIColor whiteColor];
     if (event.image == nil) {
         [self.imageView setHidden: true];
         self.nameLabel.text = event.nameText;
         self.nameLabel.backgroundColor = event.nameBackgroundColor;
+        [self.nameLabel setHidden: false];
     } else {
         self.imageView.image = event.image;
         [self.nameLabel setHidden: true];
+        [self.imageView setHidden: false];
     }
 //    self.location.attributedText = [[NSAttributedString alloc] initWithString:_event.location attributes:[self subtitleAttributesHighlighted:self.selected]];
     [self updateColors];
