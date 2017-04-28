@@ -78,13 +78,13 @@
         [self.title mas_makeConstraints:^(MASConstraintMaker *make) {
             make.top.equalTo(self.mas_top).offset(contentPadding.top);
             make.left.equalTo(self.mas_left).offset(contentPadding.left);
-            make.right.equalTo(self.mas_right).offset(-contentPadding.right - 30);
+            make.right.equalTo(self.mas_right).offset(-contentPadding.right - 35);
         }];
         
         [self.imageView mas_makeConstraints:^(MASConstraintMaker *make) {
             make.height.equalTo(@(25));
             make.width.equalTo(@(25));
-            make.right.equalTo(self.mas_right).offset(-contentPadding.right);
+            make.right.equalTo(self.mas_right).offset(contentPadding.right);
             make.top.equalTo(self.mas_top).offset(contentPadding.top);
         }];
     }
