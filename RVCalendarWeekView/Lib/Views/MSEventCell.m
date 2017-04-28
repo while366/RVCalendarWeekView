@@ -52,6 +52,7 @@
         self.imageView = [UIImageView new];
         self.imageView.contentMode = UIViewContentModeScaleAspectFit;
         self.imageView.layer.cornerRadius = 12.5;
+        self.imageView.layer.masksToBounds = true;
         [self.contentView addSubview: self.imageView];
         
         [self updateColors];
@@ -84,7 +85,7 @@
             make.height.equalTo(@(25));
             make.width.equalTo(@(25));
             make.right.equalTo(self.mas_right).offset(-contentPadding.right);
-            make.top.equalTo(self.mas_top);
+            make.top.equalTo(self.mas_top).offset(-contentPadding.top);
         }];
     }
     return self;
