@@ -85,7 +85,7 @@
             make.height.equalTo(@(25));
             make.width.equalTo(@(25));
             make.right.equalTo(self.mas_right).offset(-contentPadding.right);
-            make.top.equalTo(self.mas_top).offset(-contentPadding.top);
+            make.top.equalTo(self.mas_top).offset(contentPadding.top);
         }];
     }
     return self;
