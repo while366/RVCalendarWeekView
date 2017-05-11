@@ -47,7 +47,8 @@
         self.title = [UILabel new];
         self.title.numberOfLines = 0;
         self.title.backgroundColor = [UIColor clearColor];
-        self.layer.masksToBounds = false;
+        self.clipsToBounds = true;
+        self.title.clipsToBounds = true;
         [self.contentView addSubview:self.title];
         
         self.imageView = [UIImageView new];
@@ -88,7 +89,6 @@
             make.top.equalTo(self.mas_top).offset(contentPadding.top);
             make.left.equalTo(self.mas_left).offset(contentPadding.left);
             make.right.equalTo(self.mas_right).offset(-contentPadding.right - 35);
-//            make.bottom.equalTo(self.mas_bottom);
         }];
         
         [self.imageView mas_makeConstraints:^(MASConstraintMaker *make) {
