@@ -47,6 +47,7 @@
         self.title = [UILabel new];
         self.title.numberOfLines = 0;
         self.title.backgroundColor = [UIColor clearColor];
+        self.title.layer.masksToBounds = false;
         [self.contentView addSubview:self.title];
         
         self.imageView = [UIImageView new];
