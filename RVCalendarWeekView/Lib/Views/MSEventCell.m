@@ -47,8 +47,6 @@
         self.title = [UILabel new];
         self.title.numberOfLines = 0;
         self.title.backgroundColor = [UIColor clearColor];
-        self.clipsToBounds = true;
-        self.title.clipsToBounds = true;
         [self.contentView addSubview:self.title];
         
         self.imageView = [UIImageView new];
@@ -135,7 +133,9 @@
 - (void)setEvent:(MSEvent *)event
 {
     _event = event;
-    self.title.attributedText    = [[NSAttributedString alloc] initWithString:_event.title attributes:[self titleAttributesHighlighted:self.selected]];
+    NSAttributedString * str = [[NSAttributedString alloc] initWithString:_event.title attributes:[self titleAttributesHighlighted:self.selected]];
+    CGSize size = [str boundingRectWithSize: CGSizeMake(self.title.frame.size.width, CGFLOAT_MIN) options: NSStringDrawingUsesLineFragmentOrigin | NSStringDrawingUsesFontLeading context:nil].size;
+    self.title.attributedText    = str;
     self.nameLabel.textColor = [UIColor whiteColor];
     if (event.image == nil) {
         [self.imageView setHidden: true];
@@ -147,6 +147,16 @@
         [self.nameLabel setHidden: true];
         [self.imageView setHidden: false];
     }
+    if (size.height < self.title.frame.size.height) {
+        [self.title mas_makeConstraints:^(MASConstraintMaker *make) {
+            [make.bottom uninstall];
+        }];
+    } else {
+        [self.title mas_makeConstraints:^(MASConstraintMaker *make) {
+            make.bottom.equalTo(self.mas_bottom);
+        }];
+    }
+    
 //    self.location.attributedText = [[NSAttributedString alloc] initWithString:_event.location attributes:[self subtitleAttributesHighlighted:self.selected]];
     [self updateColors];
 }
