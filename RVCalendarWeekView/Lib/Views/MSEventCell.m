@@ -150,6 +150,7 @@
     if (size.height < self.title.frame.size.height) {
         [self.title mas_makeConstraints:^(MASConstraintMaker *make) {
             [make.bottom deactivate];
+            make.height.equalTo(@(size.height));
         }];
     } else {
         [self.title mas_makeConstraints:^(MASConstraintMaker *make) {
