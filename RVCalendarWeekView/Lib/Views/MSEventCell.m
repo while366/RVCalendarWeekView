@@ -149,7 +149,7 @@
     }
     if (size.height < self.title.frame.size.height) {
         [self.title mas_makeConstraints:^(MASConstraintMaker *make) {
-            [make.bottom uninstall];
+            [make.bottom deactivate];
         }];
     } else {
         [self.title mas_makeConstraints:^(MASConstraintMaker *make) {
