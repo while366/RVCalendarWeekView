@@ -50,9 +50,10 @@
         [self.contentView addSubview:self.title];
         
         self.imageView = [UIImageView new];
-        self.imageView.contentMode = UIViewContentModeScaleAspectFit;
+        self.imageView.contentMode = UIViewContentModeScaleAspectFill;
         self.imageView.layer.cornerRadius = 12.5;
         self.imageView.layer.masksToBounds = true;
+        
         [self.contentView addSubview: self.imageView];
         
         self.nameLabel = [UILabel new];
