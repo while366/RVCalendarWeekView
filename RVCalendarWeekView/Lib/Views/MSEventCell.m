@@ -139,15 +139,20 @@
 //    CGSize size = [str boundingRectWithSize: CGSizeMake(self.title.frame.size.width, CGFLOAT_MIN) options: NSStringDrawingUsesLineFragmentOrigin | NSStringDrawingUsesFontLeading context:nil].size;
     self.title.attributedText    = str;
     self.nameLabel.textColor = [UIColor whiteColor];
-    if (event.image == nil && self.frame.size.height >= 30) {
-        [self.imageView setHidden: true];
-        self.nameLabel.text = event.nameText;
-        self.nameLabel.backgroundColor = event.nameBackgroundColor;
-        [self.nameLabel setHidden: false];
+    if (self.frame.size.height >= 30) {
+        if (event.image == nil) {
+            [self.imageView setHidden: true];
+            self.nameLabel.text = event.nameText;
+            self.nameLabel.backgroundColor = event.nameBackgroundColor;
+            [self.nameLabel setHidden: false];
+        } else {
+            self.imageView.image = event.image;
+            [self.nameLabel setHidden: true];
+            [self.imageView setHidden: false];
+        }
     } else {
-        self.imageView.image = event.image;
         [self.nameLabel setHidden: true];
-        [self.imageView setHidden: false];
+        [self.imageView setHidden: true];
     }
 //    if (size.height < self.title.frame.size.height) {
 //        [self.title mas_makeConstraints:^(MASConstraintMaker *make) {
