@@ -139,7 +139,7 @@
 //    CGSize size = [str boundingRectWithSize: CGSizeMake(self.title.frame.size.width, CGFLOAT_MIN) options: NSStringDrawingUsesLineFragmentOrigin | NSStringDrawingUsesFontLeading context:nil].size;
     self.title.attributedText    = str;
     self.nameLabel.textColor = [UIColor whiteColor];
-    if (event.image == nil) {
+    if (event.image == nil && self.frame.size.height >= 30) {
         [self.imageView setHidden: true];
         self.nameLabel.text = event.nameText;
         self.nameLabel.backgroundColor = event.nameBackgroundColor;
