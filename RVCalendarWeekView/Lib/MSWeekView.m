@@ -200,9 +200,9 @@
 //    NSIndexPath * indexPath = self.collectionView.visibleCells.firstObject;
     NSDate* date = [NSDate parse:NSDate.today.toDateTimeString timezone:@"device"];
     //NSDate* date = [NSDate today:@"device"];                                      //Why does it crash on some configurations?
-    if(self.daysToShow == 1 && _eventsBySection.count == 1){
-        date = [NSDate parse:_eventsBySection.allKeys.firstObject];
-    }
+//    if(self.daysToShow == 1 && _eventsBySection.count == 1){
+//        date = [NSDate parse:_eventsBySection.allKeys.firstObject];
+//    }
     for(int i = 0; i< self.daysToShow; i++){
         if(![_eventsBySection.allKeys containsObject:date.toDeviceTimezoneDateString]){
             if (date.toDeviceTimezoneDateString == nil) { return; }
