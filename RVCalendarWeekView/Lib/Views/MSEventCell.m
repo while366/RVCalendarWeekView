@@ -51,7 +51,6 @@
         
         self.imageView = [UIImageView new];
         self.imageView.contentMode = UIViewContentModeScaleAspectFit;
-        self.imageView.layer.cornerRadius = 12.5;
         self.imageView.layer.masksToBounds = true;
         
         [self.contentView addSubview: self.imageView];
@@ -135,6 +134,12 @@
 - (void)setEvent:(MSEvent *)event
 {
     _event = event;
+    if (event.type == 0 || event.type == 1) {
+        self.imageView.layer.cornerRadius = 12.5;
+    } else {
+        self.imageView.layer.cornerRadius = 0.0;
+    }
+    
     NSAttributedString * str = [[NSAttributedString alloc] initWithString:_event.title attributes:[self titleAttributesHighlighted:self.selected]];
 //    CGSize size = [str boundingRectWithSize: CGSizeMake(self.title.frame.size.width, CGFLOAT_MIN) options: NSStringDrawingUsesLineFragmentOrigin | NSStringDrawingUsesFontLeading context:nil].size;
     self.title.attributedText    = str;

@@ -17,11 +17,12 @@
 @property (nonatomic, strong) UIImage  *image;
 @property (nonatomic, strong) NSString  *nameText;
 @property (nonatomic, strong) UIColor *nameBackgroundColor;
+@property (nonatomic) NSInteger type;
 
-+(instancetype)make:(NSDate*)start title:(NSString*)title subtitle:(NSString*)subtitle image:(UIImage*)image name:(NSString*)name color:(UIColor *)nameBackgroundColor;
-+(instancetype)make:(NSDate*)start end:(NSDate*)end title:(NSString*)title subtitle:(NSString*)subtitle image:(UIImage*)image name:(NSString*)name color:(UIColor *)nameBackgroundColor;
++(instancetype)make:(NSDate*)start title:(NSString*)title subtitle:(NSString*)subtitle image:(UIImage*)image name:(NSString*)name color:(UIColor *)nameBackgroundColor type:(NSInteger) type;
++(instancetype)make:(NSDate*)start end:(NSDate*)end title:(NSString*)title subtitle:(NSString*)subtitle image:(UIImage*)image name:(NSString*)name color:(UIColor *)nameBackgroundColor type:(NSInteger) type;
 
-+(instancetype)make:(NSDate*)start duration:(int)minutes title:(NSString*)title subtitle:(NSString*)subtitle image:(UIImage*)image name:(NSString*)name color:(UIColor *)nameBackgroundColor;
++(instancetype)make:(NSDate*)start duration:(int)minutes title:(NSString*)title subtitle:(NSString*)subtitle image:(UIImage*)image name:(NSString*)name color:(UIColor *)nameBackgroundColor type:(NSInteger) type;
 
 - (NSDate *)day;
 
