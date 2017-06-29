@@ -50,7 +50,7 @@
         [self.contentView addSubview:self.title];
         
         self.imageView = [UIImageView new];
-        self.imageView.contentMode = UIViewContentModeScaleAspectFill;
+        self.imageView.contentMode = UIViewContentModeScaleAspectFit;
         self.imageView.layer.cornerRadius = 12.5;
         self.imageView.layer.masksToBounds = true;
         
